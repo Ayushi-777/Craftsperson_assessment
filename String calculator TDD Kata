@@ -10,4 +10,20 @@ function add(numbers) {
         numString = parts.slice(1).join("\n");
     }
 
-  
+   const regex = new RegExp(`[${delimiter}\\n]`, "g");
+    const numArray = numString.split(regex);
+
+    let sum = 0;
+    const negatives = [];
+
+    for (let num of numArray) {
+        const parsedNum = parseInt(num, 10);
+        
+        if (isNaN(parsedNum)) continue;
+
+        if (parsedNum < 0) {
+            negatives.push(parsedNum);
+        } else {
+            sum += parsedNum;
+        }
+    }
